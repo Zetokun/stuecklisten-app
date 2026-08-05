@@ -31,9 +31,8 @@ if uploaded_file is not None:
         else:
             df = pd.DataFrame(rows)
             
-            # Excel im Speicher erstellen
             output = io.BytesIO()
-            with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            with pd.ExcelWriter(output, engine='openpyxl') as writer:
                 df.to_excel(writer, index=False, header=False, sheet_name='Stückliste')
             
             excel_data = output.getvalue()
